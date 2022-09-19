@@ -8,24 +8,41 @@ import javax.servlet.http.HttpServletRequest;
 public class CalculatorController {
     private final CalculatorServiceImpl calculatorServiceImpl;
 
-    public CalculatorController(CalculatorServiceImpl calculatorServiceImpl){
+    public CalculatorController(CalculatorServiceImpl calculatorServiceImpl) {
         this.calculatorServiceImpl = calculatorServiceImpl;
     }
-    @RequestMapping(value = {"", "/calculator","/calculator/plus","/calculator/minus","/calculator/multiply","/calculator/divide"})
-    public String calculator(HttpServletRequest request,
-                             @RequestParam(name = "num",required = false) Integer num, @RequestParam(name = "num2",required = false) Integer num2){
 
-        String s = request.getRequestURI().substring(11);
-        switch (s){
-            case "/plus":
-                return calculatorServiceImpl.plus(num,num2);
-            case "/minus":
-                return calculatorServiceImpl.minus(num,num2);
-            case "/multiply":
-                return calculatorServiceImpl.multiply(num, num2);
-            case "/divide":
-                return calculatorServiceImpl.divide(num, num2);
-            default:return calculatorServiceImpl.calculator();
-        }
+    @RequestMapping(value = {"", "/calculator"})
+    public String calculator() {
+        return calculatorServiceImpl.calculator();
+    }
+
+    @RequestMapping(value = {"/calculator/plus"})
+    public String plus(@RequestParam(name = "num", required = false) Integer num, @RequestParam(name = "num2", required = false) Integer num2) {
+        if (num == null) return "Отсутсвует значение num";
+        if (num2 == null) return "Отсутсвует значение num2";
+        return "Сумма = " + calculatorServiceImpl.plus(num, num2);
+    }
+
+    @RequestMapping(value = {"/calculator/minus"})
+    public String minuns(@RequestParam(name = "num", required = false) Integer num, @RequestParam(name = "num2", required = false) Integer num2) {
+        if (num == null) return "Отсутсвует значение num";
+        if (num2 == null) return "Отсутсвует значение num2";
+        return "Разность = " + calculatorServiceImpl.minus(num, num2);
+    }
+
+    @RequestMapping(value = {"/calculator/multiply"})
+    public String multiply(@RequestParam(name = "num", required = false) Integer num, @RequestParam(name = "num2", required = false) Integer num2) {
+        if (num == null) return "Отсутсвует значение num";
+        if (num2 == null) return "Отсутсвует значение num2";
+        return "Произведение = " + calculatorServiceImpl.multiply(num, num2);
+    }
+
+    @RequestMapping(value = {"/calculator/divide"})
+    public String divide(@RequestParam(name = "num", required = false) Integer num, @RequestParam(name = "num2", required = false) Integer num2) {
+        if (num == null) return "Отсутсвует значение num";
+        if (num2 == null) return "Отсутсвует значение num2";
+        if (num2 == 0) return "На 0 делить нельзя";
+        return "деление = " + calculatorServiceImpl.divide(num, num2);
     }
 }

@@ -2,8 +2,12 @@ package ru.tt.springcalculator;
 
 public interface CalculatorService {
     String calculator();
-    String plus(Integer num, Integer num2);
-    String minus(Integer num, Integer num2);
-    String multiply(Integer num, Integer num2);
-    String divide(Integer num, Integer num2);
+
+    Integer plus(Integer num, Integer num2);
+
+    Integer minus(Integer num, Integer num2);
+
+    Integer multiply(Integer num, Integer num2);
+
+    Double divide(Integer num, Integer num2);
 }
