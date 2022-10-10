@@ -43,7 +43,7 @@ public class CalculatorController {
     public String divide(@RequestParam(name = "num", required = false) Integer num, @RequestParam(name = "num2", required = false) Integer num2) {
         if (num == null) return "Отсутсвует значение num";
         if (num2 == null) return "Отсутсвует значение num2";
-        if (num2 == 0) return "На 0 делить нельзя";
+
         return "деление = " + calculatorServiceImpl.divide(num, num2);
     }
 }

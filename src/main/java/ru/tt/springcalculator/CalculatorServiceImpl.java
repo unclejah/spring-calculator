@@ -26,6 +26,7 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Override
     public Double divide(Integer num, Integer num2) {
+        if (num2 ==0) throw new ErrorZero("На 0 делить нельзя");
         return (double) num / (double) num2;
     }
 
